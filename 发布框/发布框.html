@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+        <style>
+           *{margin: 0;padding: 0;}
+.modal{width: 100%; height: 100%; position: fixed; background: rgba(0,0,0,.3);left: 0;top: 0;}
+
+/*登录弹框*/
+.openBtn{ width:100px; height:40px; border:1px solid #ccc; border-radius:5px; display:block; margin:100px auto}
+.inHtml{display: none;width:600px;height:400px; background:#fff;position:absolute;top:0;left:0; z-index:20;}
+.popBox_login{display: none;width:600px;height:400px; background:#fff;position:absolute;top:0;left:0; z-index:20;}
+.popBox_login input{ height:30px; width:200px; border:1px solid #ccc;margin: 0 auto}
+.popBox_login p{ padding-left:50px; padding-top:20px;}
+.popBox_login h4{height:40px; line-height:40px; text-indent:1em; background:#ccc;cursor:move}
+.popBox_login .logonBtn{width:100px; height:30px;border:1px solid #ccc; margin-left: 200px}
+.popBox_login .close_btn{width:20px; text-align:center; line-height:20px; height:20px; position:absolute; top:10px; right:8px; color:#fff;}
+
+
+        </style>
+	</head>
+	<body>
+            <button id="login">登录</button>
+            <div id="container" class="popBox_login"></div>
+            <div class="inHtml"></div>
+	</body>
+	<script src="tools.js"></script>
+	<script>
+        class Login {
+	constructor(btn) {
+		// 找到点击弹框按钮
+		// 传参或者直接查找根据实际情况决定
+	    this.btn = document.querySelector(btn);
+        this.container = document.querySelector("#container");
+        this.wrap = document.querySelector(".wrap")
+        this.logonBtn = document.querySelector("#loginBtn");
+        this.inHtml = document.querySelector(".inHtml")
+		this.bindEvents();
+	}
+	
+	/* bindEvents () {
+		// 给登录弹框按钮绑定事件
+		this.btn.onclick = this.btnClick.bind(this);
+	}
+	btnClick () {
+		console.log(this);
+	} */
+	
+	bindEvents () {
+		// 给登录弹框按钮绑定事件
+		/* this.btn.onclick = () => {
+			console.log(this);
+		} */
+		let _this = this;
+		this.btn.onclick = function () {
+			console.log(_this);
+			// 给container插入内容
+            _this.container.innerHTML = 
+			'<p><label>用户名：<input id="username" type="text"></label></p>'+
+			'<p>内容：<textarea cols="55" rows="15" class="wrap"></textarea></p>'+
+			
+			'<p><button id="loginBtn" class="logonBtn" type="button">提交</button></p>';
+			// 让container显示并且居中
+			tools.showCenter(_this.container);
+			// 创建模态层
+			_this.modal = document.createElement("div");
+			_this.modal.className = "modal";
+			document.body.appendChild(_this.modal);
+			
+		
+		}
+		//给提交按钮绑定事件
+        // this.logonBtn.onclick = function (){
+            //取出输入框里面的内容
+            // let box = _this.wrap.value;
+            //取消模态层
+            // _this.modal.remove;
+            //把输入框的内容放入inHtml里面
+            //再把inHtml append到body中
+            //再让inHtml在body中居中
+            //2分钟内撤回不知道怎么写了
+        
+        }
+    }
+        
+
+		new Login("#login");
+	</script>
+	<!-- '<h4>用户登录</h4>'+
+	'<a id="closeBtn" class="close_btn" href="javascript:;">×</a>'+
+	'<p><label>用户名：<input id="username" type="text"></label></p>'+
+	'<p><label>密　码：<input id="password" type="password"></label></p>'+
+	'<p><button id="loginBtn" class="logonBtn" type="button">登录</button></p>'; -->
+</html>
